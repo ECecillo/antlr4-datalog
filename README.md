@@ -114,3 +114,12 @@ npm run build
 
 # Running the project
 
+If you simply want to run the project with the actual data used for this project, just run `npm run start` and you should see all the data print in the `main.py`.
+
+Now if you want to work or run your own python commands, you can use `npm run dev`.
+This command will put you in the tty terminal of the container and from there you can run any python commands.
+
+# Author
+
+CECILLON Enzo, Master 1 in Computer Science.
+Student number : p1805901.
