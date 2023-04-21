@@ -1,0 +1,10 @@
+# Editor directories and system files
+
+.DS_STORE
+.vscode
+.idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
