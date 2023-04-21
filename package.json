@@ -6,7 +6,8 @@
     "build": "docker-compose build",
     "start": "docker-compose up datalog_project_run",
     "dev" : "docker-compose up --detach datalog_project_terminal && docker attach $(docker-compose ps -q datalog_project_terminal)",
-    "stop": "docker-compose down"
+    "stop": "docker-compose down",
+    "tar" : "tar -czvf rendu.tar.gz src/ doc/"
   },
   "repository": {
     "type": "git",
