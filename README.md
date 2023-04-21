@@ -112,6 +112,5 @@ To execute any of these custom commands, simply run `npm run <command-name>` in 
 npm run build
 ```
 
-This command is equivalent to running `docker-compose build` directly.
-
 # Running the project
+
