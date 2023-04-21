@@ -1,0 +1,16 @@
+{
+  "name": "mif14",
+  "version": "1.0.0",
+  "description": "Just a package.json to easly run some commands (just like a makefile).",
+  "scripts": {
+    "build": "docker-compose build",
+    "start": "docker-compose up",
+    "stop": "docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://forge.univ-lyon1.fr/p1805901/homemade-datalog.git"
+  },
+  "author": "CECILLON Enzo",
+  "license": "ISC"
+}
