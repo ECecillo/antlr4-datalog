@@ -4,7 +4,8 @@
   "description": "Just a package.json to easly run some commands (just like a makefile).",
   "scripts": {
     "build": "docker-compose build",
-    "start": "docker-compose up",
+    "start": "docker-compose up datalog_project_run",
+    "dev" : "docker-compose up --detach datalog_project_terminal && docker attach $(docker-compose ps -q datalog_project_terminal)",
     "stop": "docker-compose down"
   },
   "repository": {

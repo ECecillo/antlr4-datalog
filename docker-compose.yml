@@ -1,6 +1,15 @@
 version: "3.9"
 services:
-  datalog_project:
+  datalog_project_run:
     build: .
     volumes:
       - .:/app
+    entrypoint: python main.py
+
+  datalog_project_terminal:
+    build: .
+    volumes:
+      - .:/app
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
