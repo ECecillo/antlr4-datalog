@@ -1,0 +1,16 @@
+:-type(Artists(aID:int,anom:string,nationalite:string)).
+
+Artists(123,'KeanuReeves','americaine').
+Artists(415,'MarionCotillard','francaise').
+
+
+% films(1,'De rouilles et des os',867,2011,'francaise').
+% films(2,'TheMatrix',876,1999,'anglaise').
+% films(3,'TheMatrixReloaded',876,2003,'anglaise').
+
+% roles(1,415,'Stephanie',21000).
+% roles(1,420,'Sam',9000).
+% roles(2,123,'Neo',10500).
+% roles(3,123,'Neo',20000).
+% roles(2,702,'FJacques',45000).
+% roles(1,304,'Alain',9000).

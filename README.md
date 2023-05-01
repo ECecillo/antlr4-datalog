@@ -119,6 +119,13 @@ If you simply want to run the project with the actual data used for this project
 Now if you want to work or run your own python commands, you can use `npm run dev`.
 This command will put you in the tty terminal of the container and from there you can run any python commands.
 
+# Generating ANTLR4 parser, visitor
+
+`antlr4 -Dlanguage=Python3 Datalog.g4` Create just Lexer, and parser.
+
+`antlr4 -Dlanguage=Python3 -visitor Datalog.g4` : Create Lexer, Parser and visitor to be extended with own implementation.
+
+
 # Author
 
 CECILLON Enzo, Master 1 in Computer Science.

@@ -4,12 +4,12 @@ services:
     build: .
     volumes:
       - .:/app
-    entrypoint: python main.py
+    entrypoint: python src/main.py
 
   datalog_project_terminal:
     build: .
     volumes:
       - .:/app
-    entrypoint: /bin/sh
+    entrypoint: /bin/bash
     stdin_open: true
     tty: true
