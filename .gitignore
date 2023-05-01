@@ -8,3 +8,14 @@
 logs
 *.log
 npm-debug.log*
+
+# python stuff
+
+**/__pycache__/
+**/*.out
+
+# Antlr generated files
+
+**/*.interp
+**/*.tokens
+.antlr/

@@ -1,0 +1,3 @@
+:-type(Artists(aID:int,anom:string,nationalite:string)).
+:-type(Students(sID:int,snom:string,sprenom:string, snum: string)).
+:-type(Ue(ueID:int,uenom:string)).

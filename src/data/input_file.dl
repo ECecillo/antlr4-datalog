@@ -1,0 +1,5 @@
+:-type(Artists(aID:int,anom:string,nationalite:string)).
+
+Student(1, "Enzo").
+
+q(X, Count) :- Student(I,N), Grade(I, V), COUNT(V, Count), AVG(S, Average).
