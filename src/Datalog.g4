@@ -33,7 +33,6 @@ columnType: ID_CHAR ':' typee # columnDecl;
 typee: mytype = (INTTYPE | BOOLTYPE | STRINGTYPE) # basicType;
 
 // ======================= EDB Insertion ======================= ✅ fact to create data in EDB
-// relation. Artists(1, 'Bob Marley').
 fact:
 	EDB_RELATION_NAME LEFT_PAR term_l RIGHT_PAR DOT # edbInsertion;
 
@@ -80,7 +79,7 @@ aggregateOp: 'COUNT' | 'SUM' | 'AVG';
 INT: [0-9]+;
 STRING: '\'' (~'\'' | '\\\'')* '\'' | '"' (~'"' | '\\"')* '"';
 
-EDB_RELATION_NAME: [A-Z][a-z]*;
+EDB_RELATION_NAME: [A-Z][a-z][a-z]*;
 ID_CHAR: [a-zA-Z0-9_] [a-zA-Z_0-9]*;
 IDB_NAME: [a-z][a-z]*;
 VARIABLE: [A-Z][A-Z]*;
