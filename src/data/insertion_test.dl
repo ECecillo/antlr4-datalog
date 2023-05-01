@@ -3,14 +3,18 @@
 Artists(123,'KeanuReeves','americaine').
 Artists(415,'MarionCotillard','francaise').
 
+:-type(Films(fID:int,titre:string,realisateur:int,an:int,langue:string)).
 
-% films(1,'De rouilles et des os',867,2011,'francaise').
-% films(2,'TheMatrix',876,1999,'anglaise').
-% films(3,'TheMatrixReloaded',876,2003,'anglaise').
+Films(1,'De rouilles et des os',867,2011,'francaise').
+Films(2,'TheMatrix',876,1999,'anglaise').
+Films(3,'TheMatrixReloaded',876,2003,'anglaise').
 
-% roles(1,415,'Stephanie',21000).
-% roles(1,420,'Sam',9000).
-% roles(2,123,'Neo',10500).
-% roles(3,123,'Neo',20000).
-% roles(2,702,'FJacques',45000).
-% roles(1,304,'Alain',9000).
+:-type(Roles(fID:int,aID:int,personnage:string,cout:int)).
+
+
+Roles(1,415,'Stephanie',21000).
+Roles(1,420,'Sam',9000).
+Roles(2,123,'Neo',10500).
+Roles(3,123,'Neo',20000).
+Roles(2,702,'FJacques',45000).
+Roles(1,304,'Alain',9000).
