@@ -1,0 +1,6 @@
+man("Abe").
+man("Bob").
+woman("Abby").
+
+man(X)?
+

@@ -1,6 +1,6 @@
-# Generated from Datalog.g4 by ANTLR 4.12.0
+# Generated from Datalog.g4 by ANTLR 4.13.0
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .DatalogParser import DatalogParser
 else:
     from DatalogParser import DatalogParser
@@ -14,6 +14,15 @@ class DatalogListener(ParseTreeListener):
 
     # Exit a parse tree produced by DatalogParser#program.
     def exitProgram(self, ctx:DatalogParser.ProgramContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#edbInsertion.
+    def enterEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#edbInsertion.
+    def exitEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
         pass
 
 
@@ -80,21 +89,111 @@ class DatalogListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#edbInsertion.
-    def enterEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
+    # Enter a parse tree produced by DatalogParser#assertionClause.
+    def enterAssertionClause(self, ctx:DatalogParser.AssertionClauseContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#edbInsertion.
-    def exitEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
+    # Exit a parse tree produced by DatalogParser#assertionClause.
+    def exitAssertionClause(self, ctx:DatalogParser.AssertionClauseContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#termListBase.
-    def enterTermListBase(self, ctx:DatalogParser.TermListBaseContext):
+    # Enter a parse tree produced by DatalogParser#queryInstruction.
+    def enterQueryInstruction(self, ctx:DatalogParser.QueryInstructionContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#termListBase.
-    def exitTermListBase(self, ctx:DatalogParser.TermListBaseContext):
+    # Exit a parse tree produced by DatalogParser#queryInstruction.
+    def exitQueryInstruction(self, ctx:DatalogParser.QueryInstructionContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#retractionClause.
+    def enterRetractionClause(self, ctx:DatalogParser.RetractionClauseContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#retractionClause.
+    def exitRetractionClause(self, ctx:DatalogParser.RetractionClauseContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#clauseRule.
+    def enterClauseRule(self, ctx:DatalogParser.ClauseRuleContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#clauseRule.
+    def exitClauseRule(self, ctx:DatalogParser.ClauseRuleContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#clauseFact.
+    def enterClauseFact(self, ctx:DatalogParser.ClauseFactContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#clauseFact.
+    def exitClauseFact(self, ctx:DatalogParser.ClauseFactContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#bodyList.
+    def enterBodyList(self, ctx:DatalogParser.BodyListContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#bodyList.
+    def exitBodyList(self, ctx:DatalogParser.BodyListContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#bodyBase.
+    def enterBodyBase(self, ctx:DatalogParser.BodyBaseContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#bodyBase.
+    def exitBodyBase(self, ctx:DatalogParser.BodyBaseContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#literal.
+    def enterLiteral(self, ctx:DatalogParser.LiteralContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#literal.
+    def exitLiteral(self, ctx:DatalogParser.LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#predicateRelationIdentifier.
+    def enterPredicateRelationIdentifier(self, ctx:DatalogParser.PredicateRelationIdentifierContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#predicateRelationIdentifier.
+    def exitPredicateRelationIdentifier(self, ctx:DatalogParser.PredicateRelationIdentifierContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#predicateString.
+    def enterPredicateString(self, ctx:DatalogParser.PredicateStringContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#predicateString.
+    def exitPredicateString(self, ctx:DatalogParser.PredicateStringContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#external_sym.
+    def enterExternal_sym(self, ctx:DatalogParser.External_symContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#external_sym.
+    def exitExternal_sym(self, ctx:DatalogParser.External_symContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#termBase.
+    def enterTermBase(self, ctx:DatalogParser.TermBaseContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#termBase.
+    def exitTermBase(self, ctx:DatalogParser.TermBaseContext):
         pass
 
 
@@ -107,102 +206,57 @@ class DatalogListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#idbRule.
-    def enterIdbRule(self, ctx:DatalogParser.IdbRuleContext):
+    # Enter a parse tree produced by DatalogParser#termVariable.
+    def enterTermVariable(self, ctx:DatalogParser.TermVariableContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#idbRule.
-    def exitIdbRule(self, ctx:DatalogParser.IdbRuleContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#head.
-    def enterHead(self, ctx:DatalogParser.HeadContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#head.
-    def exitHead(self, ctx:DatalogParser.HeadContext):
+    # Exit a parse tree produced by DatalogParser#termVariable.
+    def exitTermVariable(self, ctx:DatalogParser.TermVariableContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#body.
-    def enterBody(self, ctx:DatalogParser.BodyContext):
+    # Enter a parse tree produced by DatalogParser#termConstant.
+    def enterTermConstant(self, ctx:DatalogParser.TermConstantContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#body.
-    def exitBody(self, ctx:DatalogParser.BodyContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#predicates.
-    def enterPredicates(self, ctx:DatalogParser.PredicatesContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#predicates.
-    def exitPredicates(self, ctx:DatalogParser.PredicatesContext):
+    # Exit a parse tree produced by DatalogParser#termConstant.
+    def exitTermConstant(self, ctx:DatalogParser.TermConstantContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#predicateDecl.
-    def enterPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
+    # Enter a parse tree produced by DatalogParser#identifierConstant.
+    def enterIdentifierConstant(self, ctx:DatalogParser.IdentifierConstantContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#predicateDecl.
-    def exitPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#aggregateFunction.
-    def enterAggregateFunction(self, ctx:DatalogParser.AggregateFunctionContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#aggregateFunction.
-    def exitAggregateFunction(self, ctx:DatalogParser.AggregateFunctionContext):
+    # Exit a parse tree produced by DatalogParser#identifierConstant.
+    def exitIdentifierConstant(self, ctx:DatalogParser.IdentifierConstantContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#variableListBase.
-    def enterVariableListBase(self, ctx:DatalogParser.VariableListBaseContext):
+    # Enter a parse tree produced by DatalogParser#stringConstant.
+    def enterStringConstant(self, ctx:DatalogParser.StringConstantContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#variableListBase.
-    def exitVariableListBase(self, ctx:DatalogParser.VariableListBaseContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#variableList.
-    def enterVariableList(self, ctx:DatalogParser.VariableListContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#variableList.
-    def exitVariableList(self, ctx:DatalogParser.VariableListContext):
+    # Exit a parse tree produced by DatalogParser#stringConstant.
+    def exitStringConstant(self, ctx:DatalogParser.StringConstantContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#intAtom.
-    def enterIntAtom(self, ctx:DatalogParser.IntAtomContext):
+    # Enter a parse tree produced by DatalogParser#intConstant.
+    def enterIntConstant(self, ctx:DatalogParser.IntConstantContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#intAtom.
-    def exitIntAtom(self, ctx:DatalogParser.IntAtomContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#stringAtom.
-    def enterStringAtom(self, ctx:DatalogParser.StringAtomContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#stringAtom.
-    def exitStringAtom(self, ctx:DatalogParser.StringAtomContext):
+    # Exit a parse tree produced by DatalogParser#intConstant.
+    def exitIntConstant(self, ctx:DatalogParser.IntConstantContext):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#booleanAtom.
-    def enterBooleanAtom(self, ctx:DatalogParser.BooleanAtomContext):
+    # Enter a parse tree produced by DatalogParser#booleanConstant.
+    def enterBooleanConstant(self, ctx:DatalogParser.BooleanConstantContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#booleanAtom.
-    def exitBooleanAtom(self, ctx:DatalogParser.BooleanAtomContext):
+    # Exit a parse tree produced by DatalogParser#booleanConstant.
+    def exitBooleanConstant(self, ctx:DatalogParser.BooleanConstantContext):
         pass
 
 

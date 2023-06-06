@@ -8,7 +8,7 @@ This document provides instructions for setting up and running the Datalog proje
 
 To run this project, you need to have Docker and Docker Compose installed on your machine. If you haven't already, you can follow the official installation guides for Docker [here](https://docs.docker.com/engine/install/) and Docker Compose [here](https://docs.docker.com/compose/install/).
 
-## Setting up the Project with Docker.
+## Setting up the Project with Docker
 
 (Most of the docker command below can be run using `npm`, I invite you to read the section "Why package.json" if you are already familiar)
 
@@ -125,6 +125,11 @@ This command will put you in the tty terminal of the container and from there yo
 
 `antlr4 -Dlanguage=Python3 -visitor Datalog.g4` : Create Lexer, Parser and visitor to be extended with own implementation.
 
+# Solution pour le problème pour reconnaitre un IDB
+
+Ici la règle de `ID_CHAR` est beaucoup trop générale il faut faire en sorte de définir au niveau du parser 2 règles pour ID, une pour le cas où c'est LOWER et une autre avec Upper.
+
+Bref il faut faire en sorte que ça soit moins générale pour que ça ait moins de problème pour dire à quelle règle le token correspond.
 
 # Author
 

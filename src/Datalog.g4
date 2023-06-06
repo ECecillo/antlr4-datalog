@@ -14,7 +14,29 @@ options {
 program: statement* EOF;
 
 // TODO: change when we implement all of the rule for fact, idb and edbTypeDeclaration.
-statement: fact | idbRule | edbTypeDeclaration;
+//statement: fact | idbRule | edbTypeDeclaration;
+
+// ======================= EDB Insertion ======================= ✅ fact to create data in EDB
+fact:
+	IDENTIFIER LEFT_PAR terms_l RIGHT_PAR DOT # edbInsertion;
+
+//term_l: atom # termListBase | atom COMA term_l # termList;
+
+// ============ IDB Definition =========== TODO: q(x) :- p(x), r(x). for example.
+//idbRule: head ASSIGN body DOT;
+
+//head: IDB_NAME LEFT_PAR variable_l RIGHT_PAR;
+
+// body:
+// 	predicates
+// 	| aggregateFunction
+// 	| predicates aggregateFunction;
+
+statement
+   : assertion
+	 | edbTypeDeclaration
+   | query
+   ;
 
 // ===================== Typing and Defining EDB ===================== ✅
 edbTypeDeclaration:
@@ -22,50 +44,86 @@ edbTypeDeclaration:
 
 // Défini le type et déclare les nom de colonnes de l'edb.
 edbTypeDefinition:
-	EDB_RELATION_NAME LEFT_PAR columnType_l RIGHT_PAR # edbTypeDefinitionBase;
+	edb=IDENTIFIER LEFT_PAR columnType_l RIGHT_PAR # edbTypeDefinitionBase;
 
 columnType_l:
 	columnType						# columnTypeListBase
 	| columnType COMA columnType_l	# columnTypeList;
 
-columnType: ID_CHAR ':' typee # columnDecl;
+columnType: IDENTIFIER ':' typee # columnDecl;
 
 typee: mytype = (INTTYPE | BOOLTYPE | STRINGTYPE) # basicType;
 
-// ======================= EDB Insertion ======================= ✅ fact to create data in EDB
-fact:
-	EDB_RELATION_NAME LEFT_PAR term_l RIGHT_PAR DOT # edbInsertion;
+assertion
+   : clause DOT # assertionClause
+   ;
 
-term_l:
-	atom				# termListBase
-	| atom COMA term_l	# termList;
+// Used to access values in an edb or idb.
+query
+   : literal '?' # queryInstruction
+   ;
 
-// ============ IDB Definition =========== TODO: q(x) :- p(x), r(x). for example.
-idbRule: head ASSIGN body DOT;
+// Used to remove clause in an edb or idb.
+retraction
+		: clause '~' # retractionClause
+		;
 
-head: IDB_NAME LEFT_PAR variable_l RIGHT_PAR;
-body:
-	predicates
-	| aggregateFunction
-	| predicates aggregateFunction;
+clause:
+	head=literal ASSIGN body # clauseRule
+	| predicate_sym '(' terms_l ')' # clauseFact;
 
-predicates: predicate | predicates COMA predicates;
+body
+   : literal COMA body # bodyList
+   | literal # bodyBase
+   ;
 
-predicate: (
-		idbPredicate = IDB_NAME
-		| edbPredicate = EDB_RELATION_NAME
-	) LEFT_PAR variable_l RIGHT_PAR # predicateDecl;
+// predicates: predicate | predicates COMA predicates;
 
-aggregateFunction: aggregateOp LEFT_PAR variable_l RIGHT_PAR;
+literal:
+	predicate_sym '(' ')'
+	| predicate_sym '(' terms_l ')'
+	| aggregateOp '(' terms_l ')'
+	| predicate_sym
+	| term '=' term
+	| term '!=' term
+	| VARIABLE ASSIGN external_sym '(' terms_l ')';
 
-variable_l:
-	VARIABLE					# variableListBase
-	| VARIABLE COMA variable_l	# variableList;
+// predicate: (
+// 		idbPredicate = IDB_NAME
+// 		| edbPredicate = EDB_RELATION_NAME
+// 	) LEFT_PAR variable_l RIGHT_PAR # predicateDecl;
 
-atom:
-	INT					# intAtom
-	| STRING			# stringAtom
-	| (TRUE | FALSE)	# booleanAtom;
+
+// variable_l:
+// 	VARIABLE					# variableListBase
+// 	| VARIABLE COMA variable_l	# variableList;
+
+predicate_sym
+	 : IDENTIFIER # predicateRelationIdentifier
+   | STRING # predicateString
+   ;
+
+external_sym: IDENTIFIER;
+
+terms_l
+   : term # termBase
+   | term COMA terms_l # termList
+   ;
+
+// atom:
+// 	INTEGER				# intAtom
+// 	| STRING			# stringAtom
+// 	| (TRUE | FALSE) # booleanConstant;
+
+term:
+		VARIABLE # termVariable
+		| constant # termConstant;
+
+constant:
+	IDENTIFIER # identifierConstant
+	| STRING # stringConstant
+	| INTEGER # intConstant
+	| (TRUE | FALSE) # booleanConstant;
 
 // Lexer rules
 
@@ -76,19 +134,25 @@ TRUE: 'true';
 FALSE: 'false';
 aggregateOp: 'COUNT' | 'SUM' | 'AVG';
 
-INT: [0-9]+;
-STRING: '\'' (~'\'' | '\\\'')* '\'' | '"' (~'"' | '\\"')* '"';
-
-EDB_RELATION_NAME: [A-Z][a-z][a-z]*;
-ID_CHAR: [a-zA-Z0-9_] [a-zA-Z_0-9]*;
-IDB_NAME: [a-z][a-z]*;
-VARIABLE: [A-Z][A-Z]*;
+//EDB_RELATION_NAME: [A-Z][a-z][a-z]*;
+// VARIABLE: [A-Z][A-Z]*;
+// IDB_NAME: [a-z][a-z]*;
+//ID_CHAR: [a-zA-Z0-9_][a-zA-Z_0-9]*;
 
 ASSIGN: ':-';
 COMA: ',';
 DOT: '.';
 LEFT_PAR: '(';
 RIGHT_PAR: ')';
+
+// Conflict btwn VARIABLE AND EDB.
+IDENTIFIER: [a-z] [a-zA-Z0-9_-]*;
+VARIABLE: [A-Z] [a-zA-Z_]*;
+//EDB_RELATION_NAME: [A-Z][a-z]+;
+
+STRING: '\'' (~'\'' | '\\\'')* '\'' | '"' (~'"' | '\\"')* '"';
+
+INTEGER: [0-9]+;
 
 COMMENT:
 	// % is a comment in Datalog.

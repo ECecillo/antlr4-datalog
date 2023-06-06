@@ -1,1 +1,3 @@
-HelloThere(I,N) :- student(I,N).
+:-type(students(sID: int, name: string)).
+
+hello(I,N) :- student(I,N).
