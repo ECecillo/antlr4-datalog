@@ -1,5 +1,11 @@
-:-type(Artists(aID:int,anom:string,nationalite:string)).
+student("s1", "Enzo").
+student("s2", "Alice").
+student("s3", "Bob").
+grade("s1", 85)
+grade("s1", 90)
+grade("s1", 95)
+grade("s2", 88)
+grade("s2", 92)
+grade("s3", 80)
 
-Student(1, "Enzo").
-
-q(X, Count) :- Student(I,N), Grade(I, V), COUNT(V, Count), AVG(S, Average).
+q(I, Count) :- student(I, _), grade(I, V), COUNT(V, Count).

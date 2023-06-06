@@ -1,0 +1,8 @@
+:-type(artists(aID:int,anom:string,nationalite:string)).
+
+artists(123,'KeanuReeves','americaine').
+artists(415,'MarionCotillard','francaise').
+
+% Remove the clause from the database.
+% TO uncoment and test
+% artists(123)~

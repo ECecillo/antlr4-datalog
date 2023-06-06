@@ -1,6 +1,6 @@
-# Generated from Datalog.g4 by ANTLR 4.12.0
+# Generated from Datalog.g4 by ANTLR 4.13.0
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .DatalogParser import DatalogParser
 else:
     from DatalogParser import DatalogParser
@@ -11,6 +11,11 @@ class DatalogVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by DatalogParser#program.
     def visitProgram(self, ctx:DatalogParser.ProgramContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#edbInsertion.
+    def visitEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
         return self.visitChildren(ctx)
 
 
@@ -49,13 +54,63 @@ class DatalogVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#edbInsertion.
-    def visitEdbInsertion(self, ctx:DatalogParser.EdbInsertionContext):
+    # Visit a parse tree produced by DatalogParser#assertionClause.
+    def visitAssertionClause(self, ctx:DatalogParser.AssertionClauseContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#termListBase.
-    def visitTermListBase(self, ctx:DatalogParser.TermListBaseContext):
+    # Visit a parse tree produced by DatalogParser#queryInstruction.
+    def visitQueryInstruction(self, ctx:DatalogParser.QueryInstructionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#retractionClause.
+    def visitRetractionClause(self, ctx:DatalogParser.RetractionClauseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#clauseRule.
+    def visitClauseRule(self, ctx:DatalogParser.ClauseRuleContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#clauseFact.
+    def visitClauseFact(self, ctx:DatalogParser.ClauseFactContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#bodyList.
+    def visitBodyList(self, ctx:DatalogParser.BodyListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#bodyBase.
+    def visitBodyBase(self, ctx:DatalogParser.BodyBaseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#literal.
+    def visitLiteral(self, ctx:DatalogParser.LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#predicateRelationIdentifier.
+    def visitPredicateRelationIdentifier(self, ctx:DatalogParser.PredicateRelationIdentifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#predicateString.
+    def visitPredicateString(self, ctx:DatalogParser.PredicateStringContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#external_sym.
+    def visitExternal_sym(self, ctx:DatalogParser.External_symContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#termBase.
+    def visitTermBase(self, ctx:DatalogParser.TermBaseContext):
         return self.visitChildren(ctx)
 
 
@@ -64,58 +119,33 @@ class DatalogVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#idbRule.
-    def visitIdbRule(self, ctx:DatalogParser.IdbRuleContext):
+    # Visit a parse tree produced by DatalogParser#termVariable.
+    def visitTermVariable(self, ctx:DatalogParser.TermVariableContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#head.
-    def visitHead(self, ctx:DatalogParser.HeadContext):
+    # Visit a parse tree produced by DatalogParser#termConstant.
+    def visitTermConstant(self, ctx:DatalogParser.TermConstantContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#body.
-    def visitBody(self, ctx:DatalogParser.BodyContext):
+    # Visit a parse tree produced by DatalogParser#identifierConstant.
+    def visitIdentifierConstant(self, ctx:DatalogParser.IdentifierConstantContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#predicates.
-    def visitPredicates(self, ctx:DatalogParser.PredicatesContext):
+    # Visit a parse tree produced by DatalogParser#stringConstant.
+    def visitStringConstant(self, ctx:DatalogParser.StringConstantContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#predicateDecl.
-    def visitPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
+    # Visit a parse tree produced by DatalogParser#intConstant.
+    def visitIntConstant(self, ctx:DatalogParser.IntConstantContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#aggregateFunction.
-    def visitAggregateFunction(self, ctx:DatalogParser.AggregateFunctionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#variableListBase.
-    def visitVariableListBase(self, ctx:DatalogParser.VariableListBaseContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#variableList.
-    def visitVariableList(self, ctx:DatalogParser.VariableListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#intAtom.
-    def visitIntAtom(self, ctx:DatalogParser.IntAtomContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#stringAtom.
-    def visitStringAtom(self, ctx:DatalogParser.StringAtomContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#booleanAtom.
-    def visitBooleanAtom(self, ctx:DatalogParser.BooleanAtomContext):
+    # Visit a parse tree produced by DatalogParser#booleanConstant.
+    def visitBooleanConstant(self, ctx:DatalogParser.BooleanConstantContext):
         return self.visitChildren(ctx)
 
 
