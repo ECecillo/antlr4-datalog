@@ -7,7 +7,9 @@ def match_and_bind(predicate: Predicate, EDB: List[Fact]):
         if fact.predicate == predicate.name and len(fact.values) == len(predicate.terms):
             yield {term: value for term, value in zip(predicate.terms, fact.values)}
 
-def apply_aggregate(aggregate: AggregateFunction, variable_bindings: List[Dict[str, Union[str, int]]]) -> Union[str, int, float]:
+def apply_aggregate(aggregate: AggregateFunction, 
+                    variable_bindings: List[Dict[str, Union[str, int]]]
+    ) -> Union[str, int, float]:
     variable_to_aggr = aggregate.input_variable
     values_sum = 0
     values_count = 0
@@ -31,11 +33,13 @@ def apply_aggregate(aggregate: AggregateFunction, variable_bindings: List[Dict[s
     elif aggregate.function == 'AVG':
         return values_sum / values_count
 
-def construct_fact(head: Predicate, variable_bindings: Dict[str, Union[str, int]]) -> Fact:
+def construct_fact(head: Predicate,
+                   variable_bindings: Dict[str, Union[str, int]]) -> Fact:
     fact_values = [variable_bindings[var] for var in head.terms]
     return Fact(head.name, fact_values)
 
-def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> List[Fact]:
+def datalog_engine_evaluation(datalog_program: List[Rule],
+                              EDB: List[Fact]) -> List[Fact]:
     derived_facts = []
     new_facts = True
 
