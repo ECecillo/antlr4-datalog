@@ -73,8 +73,7 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                         continue
 
                     # Create a new list to hold the updated variable bindings
-                    # new_variable_bindings = []
-                    new_var_binding_test = []
+                    new_variable_bindings = []
 
                     # For each combination of existing and new bindings...
                     for existing_bindings in all_variable_bindings:
@@ -84,31 +83,13 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                                     new_binding = new_bindings.copy()
                                     print(
                                         f'Matching binding new variable {variable} with {new_binding} and old binding is {existing_bindings}')
-                                    new_var_binding_test.append(new_binding)
-                            # # Merge the bindings together, making sure there are no conflicts
-                            # merged_bindings = {
-                            #     **existing_bindings, **new_bindings}
-                            # print(
-                            #     f'Merging {existing_bindings} and {new_bindings} to get {merged_bindings}')
-                            # # Only add the merged bindings if they include all the bindings from both sets
-                            # # This is a way of ensuring that the bindings are consistent (i.e., we don't have a binding of X to both 's1' and 's2')
-                            # if all(value == merged_bindings.get(key) for key, value in {**existing_bindings, **new_bindings}.items()):
-                            #     new_variable_bindings.append(
-                            #         merged_bindings)
+                                    new_variable_bindings.append(new_binding)
 
                     # Replace the list of all variable bindings with the updated list
-                    # all_variable_bindings = new_variable_bindings
-                    all_variable_bindings = new_var_binding_test
-                    # print(
-                    #     f'All matching binding at end of loop for {predicate}: {all_variable_bindings}')
+                    all_variable_bindings = new_variable_bindings
                     print(
                         f'All matching binding at end of loop for {predicate}: {all_variable_bindings}')
-                    # sleep(5)
                 elif isinstance(predicate, AggregateFunction):
-                    # Group bindings by the value of 'I'
-                    #groups = groupby(all_variable_bindings, 'I')
-                    # Apply the aggregate function to each set of bindings
-                    # Apply the aggregate function to the set of variable bindings
                     result = apply_aggregate(predicate, all_variable_bindings)
 
                     # Add the result to each individual binding
@@ -117,25 +98,11 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                     # For each group...
                     new_variable_bindings = []
 
-                    #for group in groups:
-                    #    # Apply the aggregate function to the group
-                    #    result = apply_aggregate(predicate, group)
-
-                    #    # Add the result to each binding in the group
-                    #    for binding in group:
-                    #        new_binding = binding.copy()
-                    #        new_binding[predicate.output_variable] = result
-                    #        new_variable_bindings.append(new_binding)
-
-                    ## Replace the list of all variable bindings with the updated list
-                    #all_variable_bindings = new_variable_bindings
-
             # Construct derived facts for each set of variable bindings
             for variable_bindings in all_variable_bindings:
                 derived_fact = construct_fact(head, variable_bindings)
 
                 if not any(fact.same_as(derived_fact) for fact in derived_facts):
                     derived_facts.append(derived_fact)
-                    # new_facts = True
 
     return derived_facts
