@@ -4,20 +4,10 @@ from datalog_types import Predicate, Fact, AggregateFunction, Rule
 from typing import List, Union, Dict
 
 
-def match_and_bind(predicate: Predicate, EDB: List[Fact]) -> List[Dict[str, Union[str, int]]]:
-    # relation = next((r for r in EDB if r.predicate == predicate.name), None)
-    relation = [r for r in EDB if r.predicate == predicate.name]
-    all_bindings = []
-
-    if relation:
-        for fact in relation:
-            variable_bindings = {}
-            if len(fact.values) == len(predicate.terms):
-                for term, value in zip(predicate.terms, fact.values):
-                    variable_bindings[term] = value
-                all_bindings.append(variable_bindings)
-    return all_bindings
-
+def match_and_bind(predicate: Predicate, EDB: List[Fact]):
+    for fact in EDB:
+        if fact.predicate == predicate.name and len(fact.values) == len(predicate.terms):
+            yield {term: value for term, value in zip(predicate.terms, fact.values)}
 
 def apply_aggregate(aggregate: AggregateFunction, variable_bindings: List[Dict[str, Union[str, int]]]) -> Union[str, int, float]:
     variable_to_aggr = aggregate.input_variable
@@ -56,22 +46,22 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
 
         for rule in datalog_program:
             head, body = rule.head, rule.body
-
             # Initialize a list of all variable bindings for this rule
             all_variable_bindings = [{}]
 
             for predicate in body:
                 if isinstance(predicate, Predicate):
                     # Get all matching bindings for this predicate
-                    predicate_bindings = match_and_bind(predicate, EDB)
+                    predicate_bindings = list(match_and_bind(predicate, EDB))
                     print(
                         f'All matching binding at begining for {predicate}: {all_variable_bindings} and predicate_binding return is : {predicate_bindings}')
-                    # sleep(5)
+
                     if all_variable_bindings.count({}) == 1 and len(predicate_bindings) > 1:
                         print("Is empty because starting evaluation")
                         all_variable_bindings = predicate_bindings
                         continue
-
+                    
+                    index = {}
                     # Create a new list to hold the updated variable bindings
                     new_variable_bindings = []
 
@@ -84,19 +74,16 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                                     print(
                                         f'Matching binding new variable {variable} with {new_binding} and old binding is {existing_bindings}')
                                     new_variable_bindings.append(new_binding)
-
+                    
                     # Replace the list of all variable bindings with the updated list
                     all_variable_bindings = new_variable_bindings
                     print(
                         f'All matching binding at end of loop for {predicate}: {all_variable_bindings}')
                 elif isinstance(predicate, AggregateFunction):
                     result = apply_aggregate(predicate, all_variable_bindings)
-
                     # Add the result to each individual binding
                     for binding in all_variable_bindings:
                         binding[predicate.output_variable] = result
-                    # For each group...
-                    new_variable_bindings = []
 
             # Construct derived facts for each set of variable bindings
             for variable_bindings in all_variable_bindings:
