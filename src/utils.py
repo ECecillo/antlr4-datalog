@@ -1,5 +1,3 @@
-from time import sleep
-from itertools import groupby
 from datalog_types import Predicate, Fact, AggregateFunction, Rule
 from typing import List, Union, Dict
 
