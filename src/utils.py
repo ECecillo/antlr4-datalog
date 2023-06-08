@@ -4,17 +4,6 @@ from datalog_types import Predicate, Fact, AggregateFunction, Rule
 from typing import List, Union, Dict
 
 
-# def name_match(fact: Relation, query: Relation) -> bool:
-#     return fact.name == query.name
-
-
-# def filter_facts(database: Set[Relation], query: Relation, match: Callable) -> Set[Relation]:
-#     return {fact for fact in database if match(fact, query)}
-
-
-# def run_simplest(database: Set[Relation], rules: List[Rule], query: Relation) -> Set[Relation]:
-#     return filter_facts(database, query, name_match)
-
 def match_and_bind(predicate: Predicate, EDB: List[Fact]) -> List[Dict[str, Union[str, int]]]:
     # relation = next((r for r in EDB if r.predicate == predicate.name), None)
     relation = [r for r in EDB if r.predicate == predicate.name]
