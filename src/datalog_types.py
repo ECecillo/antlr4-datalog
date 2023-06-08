@@ -58,7 +58,10 @@ class AggregateFunction:
         self.function = function # COUNT, SUM, AVG
         self.input_variable = variable_to_aggr # [V]
         self.output_variable = output_variable # Count
-
+    def __str__(self):
+        return f'Aggregate function : {self.function}, inputVar: {self.input_variable}, output: {self.output_variable}'
+    def __repr__(self):
+        return f'{self.function}({self.input_variable}, {self.output_variable})'
 
 class Rule:
     """
@@ -80,5 +83,12 @@ class Rule:
         self.body = body
 
     def __repr__(self):
-        body = ",".join([str(b) for b in self.body])
+        #body = ",".join([str(predicate.name) for predicate in self.body])
+        res = []
+        for predicate in self.body:
+            if isinstance(predicate, AggregateFunction):
+                res.append(predicate.function)
+            else:
+                res.append(predicate.name)
+        body = ",".join(res) 
         return f"{self.head} <= {body}"

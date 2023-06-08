@@ -1,8 +1,7 @@
-from typing import Dict, List, cast
+from typing import Dict, List, cast, Union
 from DatalogParser import DatalogParser
 from DatalogVisitor import DatalogVisitor
-from datalog_types import Fact
-
+from datalog_types import Fact, Predicate, AggregateFunction, Rule
 
 def create_dict(column_names: List[str], data: List):
     return dict(zip(column_names, data))
@@ -13,7 +12,9 @@ class MyDatalogVisitor(DatalogVisitor):
         # Initialize any necessary data structures or variables here.
         # store all variable ids and values.
         self.dataPerEdbDictionnary = dict()
-        self.database = []
+        self.database : List[Fact] = []
+        # self.rulesToEvaluate: List[Union[Predicate, 'AggregateFunction']] = []
+        self.rulesToEvaluate: List[Rule] = []
         # edb are keys and value are array of column name.
         self.edbColumnName = dict()
         # { Students: [id, name, age], ... }
@@ -28,6 +29,7 @@ class MyDatalogVisitor(DatalogVisitor):
         return ctx.getText()[1:-1]  # Remove the ""
 
     def visitTermVariable(self, ctx) -> str:
+        print(f'Variable that will be returned {ctx.getText()}')
         return ctx.getText()
 
     # Créer une liste avec les noms de colonnes.
@@ -60,10 +62,12 @@ class MyDatalogVisitor(DatalogVisitor):
 
     def visitTermList(self, ctx):
         valueList = self.visit(ctx.terms_l())
-        # Récupère ce qui devrait être l'id du tuple à ajouter et le met au début.
+        print(f'Having the following term list : {valueList}')
+        # Récupère ce qui devrait être l'id du tuple à ajouter pour le mettre au début.
         value = self.visit(ctx.term())
         # Not optimized.
         valueList.insert(0, value)
+        print(f'Visiting the following term list : {valueList}')
         return valueList
 
     def visitClauseFact(self, ctx) -> None:
@@ -76,4 +80,35 @@ class MyDatalogVisitor(DatalogVisitor):
 
     def visitClauseRule(self, ctx):
         # Visit the IDB and create the relation in our memory array.
-        headResult = self.visit(ctx.literal())
+        headResult = self.visit(ctx.head)
+        bodyResult = self.visit(ctx.body())
+        print(f'Clause Head {headResult}')
+        print(f'Clause Body{bodyResult}')
+        self.rulesToEvaluate.append(Rule(headResult, bodyResult))
+
+    def visitBodyBase(self, ctx):
+        return [self.visit(ctx.literal())]
+    
+    def visitBodyList(self, ctx):
+        predicate_list = self.visit(ctx.body())
+        first_predicate = self.visit(ctx.literal())
+        predicate_list.insert(0, first_predicate)
+        return predicate_list
+
+    def visitPredicateDecl(self, ctx): 
+        # Creating a Predicate Object using class decl 
+        predicate_name = self.visit(ctx.predicate_sym())
+        variables = self.visit(ctx.terms_l()) 
+        print(f'Predicate {Predicate(predicate_name, variables)}')
+        return Predicate(predicate_name, variables)
+
+    def visitAggregateDecl(self, ctx):
+        operation = ctx.AGGREGATE().getText()
+        print(f'Aggregate Operation {operation}')
+        variables = self.visit(ctx.terms_l())
+        if len(variables) > 2:
+            return "Erreur: une aggregation prend 2 arguments (input_var, output_var)" 
+        else:
+            input_var, output_var = variables
+            print(f'Input variable of aggregate is {input_var} and output {output_var}')
+            return AggregateFunction(operation, input_var, output_var)

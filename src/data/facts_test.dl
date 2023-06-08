@@ -1,6 +1,7 @@
-man("Abe").
-man("Bob").
-woman("Abby").
+% man("Abe").
+% man("Bob").
+% woman("Abby").
 
-man(X)?
+% man(X)?
+man(X):- man(X), woman(X).
 
