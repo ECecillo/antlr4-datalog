@@ -32,39 +32,8 @@ def main():
     print(f'visitor database : {visitor.database}')
     print(f'visitor rules : {visitor.rulesToEvaluate}')
 # 
-#     # Process the parse tree as needed
-#     # Testing our algorithm
-#     # Fact: (predicate, values)
-#     EDB = [
-#         Fact('student', ['s1']),
-#         Fact('student', ['s2']),
-#         Fact('student', ['s3']),
-#         Fact('grade', ['s1', '85']),
-#         Fact('grade', ['s1', '90']),
-#         Fact('grade', ['s1', '95']),
-#         Fact('grade', ['s2', '88']),
-#         Fact('grade', ['s2', '92']),
-#         Fact('grade', ['s3', '80']),
-#         Fact('man', ['s1', '95']),
-#         Fact('man', ['s2', '88']),
-#         Fact('man', ['s2', '92']),
-#         Fact('woman', ['s3', '80']),
-#         Fact('woman', ['s3', '80']),
-#     ]
-# 
-#     # Rule: (head, body)
-#     # Body can be a list of Predicates or AggregateFunctions
-#     datalog_rules = [
-#         Rule(
-#             head = Predicate('q', ['I', 'Count', 'Average']), 
-#             body = [
-#                 Predicate('student', ['I']),
-#                 Predicate('grade', ['I', 'V']),
-#                 AggregateFunction('COUNT', 'V', 'Count'),
-#                 AggregateFunction('AVG', 'V', 'Average')
-#             ]
-#         ),
-#     ]
+#   # Process the parse tree as needed # Testing our algorithm 
+    # Fact: (predicate, values) 
     results = datalog_engine_evaluation(visitor.rulesToEvaluate, visitor.database)
     for fact in results:
        print(f"{fact.predicate}({fact.values})")

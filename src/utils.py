@@ -19,37 +19,29 @@ def match_and_bind(predicate: Predicate, EDB: List[Fact]) -> List[Dict[str, Unio
     return all_bindings
 
 
-def apply_aggregate(
-        aggregate: AggregateFunction,
-        variable_bindings: List[Dict[str, Union[str, int]]]
-    ) -> Union[str, int, float]:
-    # Extract the variable to which the aggregate function applies
+def apply_aggregate(aggregate: AggregateFunction, variable_bindings: List[Dict[str, Union[str, int]]]) -> Union[str, int, float]:
     variable_to_aggr = aggregate.input_variable
+    values_sum = 0
+    values_count = 0
 
-    # Extract the relevant values from the variable bindings
-    values = [binding[variable_to_aggr]
-              for binding in variable_bindings 
-              if variable_to_aggr in binding and binding[variable_to_aggr] is not None]
+    for binding in variable_bindings:
+        value = binding.get(variable_to_aggr)
+        if value is not None:
+            try:
+                values_sum += int(value)
+                values_count += 1
+            except ValueError:
+                return "Erreur: Tous les éléments de la liste doivent être des nombres"
 
-    # If there are no values left, return NULL
-    if not values:
+    if values_count == 0:
         return None
 
-    # Apply the aggregate function
     if aggregate.function == 'COUNT':
-        return len(values)
+        return values_count
     elif aggregate.function == 'SUM':
-        try :
-            sumResult = sum(int(element) for element in values)  
-            return sumResult
-        except ValueError:
-            return "Erreur: Tous les éléments de la liste doivent être des nombres"
+        return values_sum
     elif aggregate.function == 'AVG':
-        try:
-            average = sum(int(element) for element in values)
-            return average / len(values)
-        except ValueError:
-            return "Erreur: Tous les éléments de la liste doivent être des nombres"
+        return values_sum / values_count
 
 def construct_fact(head: Predicate, variable_bindings: Dict[str, Union[str, int]]) -> Fact:
     fact_values = [variable_bindings[var] for var in head.terms]
