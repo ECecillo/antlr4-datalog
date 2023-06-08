@@ -152,12 +152,66 @@ class DatalogListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DatalogParser#literal.
-    def enterLiteral(self, ctx:DatalogParser.LiteralContext):
+    # Enter a parse tree produced by DatalogParser#emptyPredicateDecl.
+    def enterEmptyPredicateDecl(self, ctx:DatalogParser.EmptyPredicateDeclContext):
         pass
 
-    # Exit a parse tree produced by DatalogParser#literal.
-    def exitLiteral(self, ctx:DatalogParser.LiteralContext):
+    # Exit a parse tree produced by DatalogParser#emptyPredicateDecl.
+    def exitEmptyPredicateDecl(self, ctx:DatalogParser.EmptyPredicateDeclContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#predicateDecl.
+    def enterPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#predicateDecl.
+    def exitPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#aggregateDecl.
+    def enterAggregateDecl(self, ctx:DatalogParser.AggregateDeclContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#aggregateDecl.
+    def exitAggregateDecl(self, ctx:DatalogParser.AggregateDeclContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#idbQuery.
+    def enterIdbQuery(self, ctx:DatalogParser.IdbQueryContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#idbQuery.
+    def exitIdbQuery(self, ctx:DatalogParser.IdbQueryContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#eqPredicate.
+    def enterEqPredicate(self, ctx:DatalogParser.EqPredicateContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#eqPredicate.
+    def exitEqPredicate(self, ctx:DatalogParser.EqPredicateContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#notEqualPredicate.
+    def enterNotEqualPredicate(self, ctx:DatalogParser.NotEqualPredicateContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#notEqualPredicate.
+    def exitNotEqualPredicate(self, ctx:DatalogParser.NotEqualPredicateContext):
+        pass
+
+
+    # Enter a parse tree produced by DatalogParser#somthing.
+    def enterSomthing(self, ctx:DatalogParser.SomthingContext):
+        pass
+
+    # Exit a parse tree produced by DatalogParser#somthing.
+    def exitSomthing(self, ctx:DatalogParser.SomthingContext):
         pass
 
 
@@ -257,15 +311,6 @@ class DatalogListener(ParseTreeListener):
 
     # Exit a parse tree produced by DatalogParser#booleanConstant.
     def exitBooleanConstant(self, ctx:DatalogParser.BooleanConstantContext):
-        pass
-
-
-    # Enter a parse tree produced by DatalogParser#aggregateOp.
-    def enterAggregateOp(self, ctx:DatalogParser.AggregateOpContext):
-        pass
-
-    # Exit a parse tree produced by DatalogParser#aggregateOp.
-    def exitAggregateOp(self, ctx:DatalogParser.AggregateOpContext):
         pass
 
 

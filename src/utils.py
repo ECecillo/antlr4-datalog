@@ -85,7 +85,7 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                     predicate_bindings = match_and_bind(predicate, EDB)
                     print(
                         f'All matching binding at begining for {predicate}: {all_variable_bindings} and predicate_binding return is : {predicate_bindings}')
-                    sleep(5)
+                    # sleep(5)
                     if all_variable_bindings.count({}) == 1 and len(predicate_bindings) > 1:
                         print("Is empty because starting evaluation")
                         all_variable_bindings = predicate_bindings
@@ -122,7 +122,7 @@ def datalog_engine_evaluation(datalog_program: List[Rule], EDB: List[Fact]) -> L
                     #     f'All matching binding at end of loop for {predicate}: {all_variable_bindings}')
                     print(
                         f'All matching binding at end of loop for {predicate}: {all_variable_bindings}')
-                    sleep(5)
+                    # sleep(5)
                 elif isinstance(predicate, AggregateFunction):
                     # Group bindings by the value of 'I'
                     #groups = groupby(all_variable_bindings, 'I')

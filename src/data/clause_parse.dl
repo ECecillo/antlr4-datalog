@@ -1,0 +1,3 @@
+head(X,Y,Z,I):- body1(X).
+man(X):- helloThere(X,_).
+withAggr(Count) :- COUNT(X, Count).

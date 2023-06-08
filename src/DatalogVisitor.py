@@ -89,8 +89,38 @@ class DatalogVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DatalogParser#literal.
-    def visitLiteral(self, ctx:DatalogParser.LiteralContext):
+    # Visit a parse tree produced by DatalogParser#emptyPredicateDecl.
+    def visitEmptyPredicateDecl(self, ctx:DatalogParser.EmptyPredicateDeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#predicateDecl.
+    def visitPredicateDecl(self, ctx:DatalogParser.PredicateDeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#aggregateDecl.
+    def visitAggregateDecl(self, ctx:DatalogParser.AggregateDeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#idbQuery.
+    def visitIdbQuery(self, ctx:DatalogParser.IdbQueryContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#eqPredicate.
+    def visitEqPredicate(self, ctx:DatalogParser.EqPredicateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#notEqualPredicate.
+    def visitNotEqualPredicate(self, ctx:DatalogParser.NotEqualPredicateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DatalogParser#somthing.
+    def visitSomthing(self, ctx:DatalogParser.SomthingContext):
         return self.visitChildren(ctx)
 
 
@@ -146,11 +176,6 @@ class DatalogVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by DatalogParser#booleanConstant.
     def visitBooleanConstant(self, ctx:DatalogParser.BooleanConstantContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DatalogParser#aggregateOp.
-    def visitAggregateOp(self, ctx:DatalogParser.AggregateOpContext):
         return self.visitChildren(ctx)
 
 
