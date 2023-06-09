@@ -7,7 +7,7 @@
     "start": "docker-compose up datalog_project_run",
     "dev" : "docker-compose up --detach datalog_project_terminal && docker attach $(docker-compose ps -q datalog_project_terminal)",
     "stop": "docker-compose down",
-    "tar" : "npm run clean && tar -czvf rendu.tar.gz Dockerfile docker-compose.yml README.md package.json requirements.txt src/ doc/",
+    "tar" : "npm run clean && tar -czvf rendu.tar.gz doc/report-CECILLON-Enzo.pdf Dockerfile docker-compose.yml README.md package.json requirements.txt src/",
     "clean": "cd src && rm -rf *.interp *.tokens *.interp *.pyc __pycache__ .antlr"
   },
   "repository": {
