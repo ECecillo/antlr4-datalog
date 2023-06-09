@@ -19,3 +19,6 @@ npm-debug.log*
 **/*.interp
 **/*.tokens
 .antlr/
+
+rendu/
+rendu.tar.gz
