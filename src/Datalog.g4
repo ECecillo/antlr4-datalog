@@ -12,8 +12,6 @@ program: statement* EOF;
 fact:
 	IDENTIFIER LEFT_PAR terms_l RIGHT_PAR DOT # edbInsertion;
 
-//term_l: atom # termListBase | atom COMA term_l # termList;
-
 // ============ IDB Definition =========== 
 
 statement

@@ -62,20 +62,31 @@ def datalog_engine_evaluation(datalog_program: List[Rule],
                         print("Is empty because starting evaluation")
                         all_variable_bindings = predicate_bindings
                         continue
-                    
+                   
+                    # index all bindings in a dictionnary.
                     index = {}
+                    for bindings in all_variable_bindings:
+                        key = tuple(bindings[var] for var in predicate.terms if var in bindings)
+                        index.setdefault(key, []).append(bindings)
+                    test = [] 
+                    print(f'The index content for the current predicate {predicate} : {index}')
+          
                     # Create a new list to hold the updated variable bindings
-                    new_variable_bindings = []
-
+                    new_variable_bindings = [] 
                     # For each combination of existing and new bindings...
                     for existing_bindings in all_variable_bindings:
                         for new_bindings in predicate_bindings:
-                            for variable, value in new_bindings.items():
-                                if variable in existing_bindings and existing_bindings[variable] == value:
-                                    new_binding = new_bindings.copy()
-                                    print(
-                                        f'Matching binding new variable {variable} with {new_binding} and old binding is {existing_bindings}')
-                                    new_variable_bindings.append(new_binding)
+                            common_keys = set(existing_bindings.keys()).intersection(new_bindings.keys())
+                            if all(existing_bindings[key] == new_bindings[key] for key in common_keys):
+                                merged_bindings = {**existing_bindings, **new_bindings}
+                                print(f'Merged bindings: {merged_bindings}')
+                                new_variable_bindings.append(merged_bindings)
+                            # for variable, value in new_bindings.items():
+                            #     if variable in existing_bindings and existing_bindings[variable] == value:
+                            #         new_binding = new_bindings.copy()
+                            #         print(
+                            #             f'Matching binding new variable {variable} with {new_binding} and old binding is {existing_bindings}')
+                            #         new_variable_bindings.append(new_binding)
                     
                     # Replace the list of all variable bindings with the updated list
                     all_variable_bindings = new_variable_bindings

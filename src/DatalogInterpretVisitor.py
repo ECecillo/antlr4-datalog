@@ -65,7 +65,6 @@ class MyDatalogVisitor(DatalogVisitor):
         print(f'Having the following term list : {valueList}')
         # Récupère ce qui devrait être l'id du tuple à ajouter pour le mettre au début.
         value = self.visit(ctx.term())
-        # Not optimized.
         valueList.insert(0, value)
         print(f'Visiting the following term list : {valueList}')
         return valueList
