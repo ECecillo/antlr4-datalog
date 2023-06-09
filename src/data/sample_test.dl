@@ -9,4 +9,5 @@ grade("s2", "92").
 grade("s3", "80").
 
 
-q('I', 'Count') :- student('I'), grade("I", "V"), COUNT("V", "Count").
+% q('I', 'Count') :- student('I'), grade("I", "V"), COUNT("V", "Count").
+p('I') :- student('I'), grade("I", _).
