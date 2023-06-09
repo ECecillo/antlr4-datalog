@@ -76,27 +76,40 @@ docker-compose up
 
 ### Stopping the Container
 
-To stop the running container, press `Ctrl+C` in the terminal where the container is running, or use the following command in a separate terminal:
+To stop the running container, press `Ctrl+C` in the terminal where the container 
+is running, or use the following command in a separate terminal:
 
 ```bash
 docker-compose down
 ```
 
-This command stops and removes the container, allowing you to rebuild and restart it if needed.
+This command stops and removes the container, allowing you to rebuild and restart 
+it if needed.
 
 ## Why package.json?
 
-This document explains the purpose of the `package.json` file included in the Datalog project and its role in simplifying the process of running custom commands and managing project dependencies.
+This document explains the purpose of the `package.json` file included in the
+Datalog project and its role in simplifying the process of running custom commands 
+and managing project dependencies.
 
-The `package.json` file is a standard component in Node.js projects, serving as a manifest that provides metadata and configuration information about the project. In the context of the Datalog project, the file is used to define custom scripts and manage project dependencies, making it easier to execute various tasks and ensure a consistent development environment.
+The `package.json` file is a standard component in Node.js projects, serving as a 
+manifest that provides metadata and configuration information about the project. 
+In the context of the Datalog project, the file is used to define custom scripts 
+and manage project dependencies, making it easier to execute various tasks and 
+ensure a consistent development environment.
 
-Although the project primarily uses Python and Docker, the inclusion of the `package.json` file offers a convenient way to organize and run custom commands, regardless of the programming language or technology stack used in the project.
+Although the project primarily uses Python and Docker, the inclusion of the 
+`package.json` file offers a convenient way to organize and run custom commands, 
+regardless of the programming language or technology stack used in the project.
 
 ## Custom Commands
 
-The `scripts` section of the `package.json` file defines a set of custom commands that can be executed using the `npm run` command. These custom commands simplify the process of running frequent tasks or complex commands by providing a shorthand alias.
+The `scripts` section of the `package.json` file defines a set of custom commands 
+that can be executed using the `npm run` command. These custom commands simplify 
+the process of running frequent tasks or complex commands by providing a shorthand alias.
 
-For example, in the Datalog project, you might have the following custom commands defined in the `scripts` section:
+For example, in the Datalog project, you might have the following custom commands 
+defined in the `scripts` section:
 
 ```json
 "scripts": {
@@ -106,7 +119,8 @@ For example, in the Datalog project, you might have the following custom command
 }
 ```
 
-To execute any of these custom commands, simply run `npm run <command-name>` in the terminal. For instance, to build the Docker container, you would run:
+To execute any of these custom commands, simply run `npm run <command-name>` in the
+terminal. For instance, to build the Docker container, you would run:
 
 ```bash
 npm run build
@@ -114,16 +128,27 @@ npm run build
 
 # Running the project
 
-If you simply want to run the project with the actual data used for this project, just run `npm run start` and you should see all the data print in the `main.py`.
+If you simply want to run the project with the actual data used for this project, 
+just run `npm run start` and you should see the output of the provided dl file
+in `main.py`.
 
 Now if you want to work or run your own python commands, you can use `npm run dev`.
-This command will put you in the tty terminal of the container and from there you can run any python commands.
+This command will put you in the TTY the container and from there you can run any
+Python commands.
+
+For example, you can go to the src directory `cd src/` and then run `python main.py`
+to do the same thing that `npm run start` does.
 
 # Generating ANTLR4 parser, visitor
 
 `antlr4 -Dlanguage=Python3 Datalog.g4` Create just Lexer, and parser.
 
 `antlr4 -Dlanguage=Python3 -visitor Datalog.g4` : Create Lexer, Parser and visitor to be extended with own implementation.
+
+## Note 
+
+You might be ask to download a JRE so ANTLR can work properly, just say yes for each
+question and you should be good to go.
 
 # Solution pour le problème pour reconnaitre un IDB
 
