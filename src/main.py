@@ -18,7 +18,7 @@ def main():
     # data/insertion_test.dl ✅
     # data/column_decl.dl ✅
     # data/basic_instruction.dl
-    # data/facts_test.dl
+    # data/facts_test.dl ✅
     # data/clause_parse.dl
     # "data/sample_test.dl"
     # "data/sample_test2.dl"
@@ -34,12 +34,12 @@ def main():
     visitor.visit(tree)
     print(f'visitor rules : {visitor.rulesToEvaluate}')
     print_database(visitor)
- 
+
     print("\n ===================== Starting the evaluation ================= \n")
 
-    
-#   # Process the parse tree as needed # Testing our algorithm 
-    # Fact: (predicate, values) 
+
+#   # Process the parse tree as needed # Testing our algorithm
+    # Fact: (predicate, values)
     results = datalog_engine_evaluation(visitor.rulesToEvaluate, visitor.database)
     for fact in results:
        print(f"{fact.predicate}({fact.values})")
