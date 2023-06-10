@@ -4,12 +4,15 @@ from typing import List, Union, Dict
 
 def match_and_bind(predicate: Predicate, EDB: List[Fact]):
     for fact in EDB:
-        if fact.predicate == predicate.name and len(fact.values) == len(predicate.terms):
+        if fact.predicate == predicate.name and len(fact.values) == len(
+            predicate.terms
+        ):
             yield {term: value for term, value in zip(predicate.terms, fact.values)}
 
-def apply_aggregate(aggregate: AggregateFunction,
-                    variable_bindings: List[Dict[str, Union[str, int]]]
-                    ) -> Union[str, int, float]:
+
+def apply_aggregate(
+    aggregate: AggregateFunction, variable_bindings: List[Dict[str, Union[str, int]]]
+) -> Union[str, int, float]:
     variable_to_aggr = aggregate.input_variable
     values_sum = 0
     values_count = 0
@@ -26,22 +29,24 @@ def apply_aggregate(aggregate: AggregateFunction,
     if values_count == 0:
         return None
 
-    if aggregate.function == 'COUNT':
+    if aggregate.function == "COUNT":
         return values_count
-    elif aggregate.function == 'SUM':
+    elif aggregate.function == "SUM":
         return values_sum
-    elif aggregate.function == 'AVG':
+    elif aggregate.function == "AVG":
         return values_sum / values_count
 
 
-def construct_fact(head: Predicate,
-                   variable_bindings: Dict[str, Union[str, int]]) -> Fact:
+def construct_fact(
+    head: Predicate, variable_bindings: Dict[str, Union[str, int]]
+) -> Fact:
     fact_values = [variable_bindings[var] for var in head.terms]
     return Fact(head.name, fact_values)
 
 
-def datalog_engine_evaluation(datalog_program: List[Rule],
-                              EDB: List[Fact]) -> List[Fact]:
+def datalog_engine_evaluation(
+    datalog_program: List[Rule], EDB: List[Fact]
+) -> List[Fact]:
     derived_facts = []
 
     for rule in datalog_program:
@@ -61,8 +66,9 @@ def datalog_engine_evaluation(datalog_program: List[Rule],
                 # index all bindings in a dictionnary.
                 index = {}
                 for bindings in all_variable_bindings:
-                    key = tuple(bindings[var]
-                                for var in predicate.terms if var in bindings)
+                    key = tuple(
+                        bindings[var] for var in predicate.terms if var in bindings
+                    )
                     index.setdefault(key, []).append(bindings)
 
                 # Create a new list to hold the updated variable bindings
@@ -71,10 +77,13 @@ def datalog_engine_evaluation(datalog_program: List[Rule],
                 for existing_bindings in all_variable_bindings:
                     for new_bindings in predicate_bindings:
                         common_keys = set(existing_bindings.keys()).intersection(
-                            new_bindings.keys())
-                        if all(existing_bindings[key] == new_bindings[key] for key in common_keys):
-                            merged_bindings = {
-                                **existing_bindings, **new_bindings}
+                            new_bindings.keys()
+                        )
+                        if all(
+                            existing_bindings[key] == new_bindings[key]
+                            for key in common_keys
+                        ):
+                            merged_bindings = {**existing_bindings, **new_bindings}
                             new_variable_bindings.append(merged_bindings)
 
                 # Replace the list of all variable bindings with the updated list
